@@ -12,30 +12,53 @@ public class cameraMovement : MonoBehaviour
 
     private Vector3 cameraPos;
     private Vector3 velocity = new Vector3(0,0,0);
+    private KeyboardControls keyboardControls;
 
-    
+    private void Awake()
+    {
+        keyboardControls = new KeyboardControls();
+    }
+
+    private void OnEnable()
+    {
+        keyboardControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        keyboardControls.Disable();
+    }
+
     // Update is called once per frame
     void Update()
     {
        
-        float horizontalInput = Input.GetAxis("Horizontal");
-        cam.transform.position += new Vector3(horizontalInput * cameraSpeed,0,0);
-        
+        float moveInput = keyboardControls.Keyboard.Movement.ReadValue<float>();
+        Vector3 currentPosition = cam.transform.position;
+        currentPosition.x += moveInput * cameraSpeed * Time.deltaTime;
+        cam.transform.position = currentPosition;
+
+
+
+
+
+
+
+
+        // Looping background effect
         float teleport = cam.transform.position.x;
-
-        if (teleport < -45.0f)
+        if (teleport < -31.28471f)
         {
-            cam.transform.position += new Vector3(160, 0, 0);
+            cam.transform.position += new Vector3(62.56942f, 0, 0);
+        }
+        else if (teleport > 31.28471f)
+        {
+            cam.transform.position -= new Vector3(62.56942f, 0, 0);
         }
 
-        else if (teleport > 125.0f)
-        {
-            cam.transform.position -= new Vector3(160, 0, 0);
-        }
 
 
-
-        if (Input.GetKey(KeyCode.Q))
+       /* if (Input.GetKey(KeyCode.Q))
         {
             zoomIn();    
         }
@@ -43,10 +66,10 @@ public class cameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             zoomOut();
-        }
+        }*/
 
     }
-
+/*
     public void zoomIn()
     {
         float newSize = cam.orthographicSize - zoomSpeed;
@@ -58,5 +81,5 @@ public class cameraMovement : MonoBehaviour
         float newSize = cam.orthographicSize + zoomSpeed;
         cam.orthographicSize = Mathf.Clamp(newSize, minZoom, maxZoom);
     }
-
+*/
 }
