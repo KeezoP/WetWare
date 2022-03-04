@@ -12,7 +12,10 @@ public class CursorController : MonoBehaviour
     private CursorControls controls;
 
     private Camera mainCamera;
-
+    private GameObject up;
+    private GameObject down;
+    private GameObject left;
+    private GameObject right;
 
     private void Awake()
     {
@@ -42,26 +45,30 @@ public class CursorController : MonoBehaviour
     private void startedClick()
     {
         changeCursor(cursorClicked);
+        DetectObject();
     }
 
     private void endedClick()
     {
         changeCursor(cursor);
-        DetectObject();
+        
     }
 
     private void DetectObject()
     {
         Ray ray = mainCamera.ScreenPointToRay(controls.Mouse.position.ReadValue<Vector2>());
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        if (hit.collider != null)
         {
-            if (hit.collider != null)
-            {
-                IClicked click = hit.collider.GetComponent<IClicked>();
-                if (click != null) click.onClickAction();
-                Debug.Log("Hit: " + hit.collider.tag);
+            IClicked click = hit.collider.GetComponent<IClicked>();
+            Debug.Log("Tag: " + hit.collider.tag + " ID: " + hit.collider.name);
+            if (click != null) 
+            { 
+                click.onClickAction(); 
             }
+
+           
         }
     }
 

@@ -47,13 +47,13 @@ public class cameraMovement : MonoBehaviour
 
         // Looping background effect
         float teleport = cam.transform.position.x;
-        if (teleport < -31.28471f)
+        if (teleport < -38.4f)
         {
-            cam.transform.position += new Vector3(62.56942f, 0, 0);
+            cam.transform.position += new Vector3(76.8f, 0, 0);
         }
-        else if (teleport > 31.28471f)
+        else if (teleport > 38.4f)
         {
-            cam.transform.position -= new Vector3(62.56942f, 0, 0);
+            cam.transform.position -= new Vector3(76.8f, 0, 0);
         }
 
 
