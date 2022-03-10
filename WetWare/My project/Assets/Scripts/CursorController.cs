@@ -21,7 +21,7 @@ public class CursorController : MonoBehaviour
     {
         controls = new CursorControls();
         changeCursor(cursor);
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         mainCamera = Camera.main;
     }
 
