@@ -7,6 +7,7 @@ TagManager:
   - Monitor
   - Puzzle_1
   - Wall
+  - Inventory
   layers:
   - Default
   - TransparentFX

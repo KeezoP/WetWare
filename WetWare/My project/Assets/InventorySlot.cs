@@ -7,7 +7,8 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     Item item;
-
+    [SerializeField] Button open; 
+    [SerializeField] Button close; 
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -26,7 +27,13 @@ public class InventorySlot : MonoBehaviour
     {
         if(item != null)
         {
+
+            
             item.Use();
+            open.gameObject.SetActive(true);
+            close.gameObject.SetActive(false);
+            GameObject.Find("ItemParent").SetActive(false);
         }
     }
 }
+    

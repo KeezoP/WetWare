@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Red Square
   icon: {fileID: 21300000, guid: 7d1cce7213dd06a48b0da2edf8a52b52, type: 3}
+  inWorldImage: {fileID: 3244398624424260486, guid: a3b9663284982ce44bd6b0e376c4b612, type: 3}

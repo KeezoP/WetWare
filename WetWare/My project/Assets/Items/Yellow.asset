@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Yellow Square
   icon: {fileID: 21300000, guid: 049138a0e38744342992a1c946e6a424, type: 3}
+  inWorldImage: {fileID: 2134014261428041494, guid: 202692f224d305948a39988d441e781e, type: 3}

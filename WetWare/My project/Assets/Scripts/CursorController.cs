@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CursorController : MonoBehaviour
 {
@@ -10,20 +12,24 @@ public class CursorController : MonoBehaviour
 
 
     private CursorControls controls;
-
+    private Hand hands;
     private Camera mainCamera;
     private GameObject up;
     private GameObject down;
     private GameObject left;
     private GameObject right;
+   
 
     private void Awake()
     {
+        
         controls = new CursorControls();
         changeCursor(cursor);
         //Cursor.lockState = CursorLockMode.Confined;
         mainCamera = Camera.main;
     }
+
+    
 
     private void OnEnable()
     {
@@ -40,12 +46,21 @@ public class CursorController : MonoBehaviour
     {
         controls.Mouse.Click.started += _ => startedClick();
         controls.Mouse.Click.performed += _ => endedClick();
+
+    }
+
+    private void Update()
+    {
     }
 
     private void startedClick()
     {
         changeCursor(cursorClicked);
         DetectObject();
+        string nameCheck = GameObject.Find("Cursor").GetComponent<Hand>().GetName();
+        if(nameCheck != null)
+            GameObject.Find(nameCheck).GetComponent<FollowMouse>().hideObject();
+
     }
 
     private void endedClick()
@@ -59,8 +74,9 @@ public class CursorController : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(controls.Mouse.position.ReadValue<Vector2>());
 
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-        if (hit.collider != null)
+        if (hit.collider != null && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
+
             IClicked click = hit.collider.GetComponent<IClicked>();
             Debug.Log("Tag: " + hit.collider.tag + " ID: " + hit.collider.name);
             if (click != null) 
@@ -71,6 +87,9 @@ public class CursorController : MonoBehaviour
            
         }
     }
+
+
+
 
 
 

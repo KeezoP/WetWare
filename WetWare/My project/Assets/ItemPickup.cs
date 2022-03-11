@@ -13,7 +13,7 @@ public class ItemPickup : MonoBehaviour, IClicked
     }
 
     void pickUp() {
-        Debug.Log("Picking up item " + Item.name);
+        //Debug.Log("Picking up item " + Item.name);
         Inventory.instance.Add(Item);
         Destroy(gameObject);
     

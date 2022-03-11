@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Green Square
   icon: {fileID: 21300000, guid: 9c092dd450a9a5346a5fbd61aa98648a, type: 3}
+  inWorldImage: {fileID: 4357351146809707136, guid: 404df4b6a90f80846ba3974f4375d690, type: 3}
