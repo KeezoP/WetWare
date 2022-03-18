@@ -8,6 +8,9 @@ TagManager:
   - Puzzle_1
   - Wall
   - Inventory
+  - BookCase
+  - Poster
+  - Pot
   layers:
   - Default
   - TransparentFX

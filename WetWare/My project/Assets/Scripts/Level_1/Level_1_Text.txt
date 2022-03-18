@@ -1,0 +1,9 @@
+This is just a test
+Is there anything i can use here?
+Then the Line ID can just be the array index
+That way i don't have to worry about list searches
+Picked up green square key item, wonder what it does
+Picked up yellow square key item, wonder what it does
+Picked up red square key item, wonder what it does
+Hmmmm, looks like i need a green square to get in
+Bingo

@@ -11,15 +11,19 @@ public class Monitor : MonoBehaviour, IClicked
 
     public void onClickAction()
     {
-
+        Line TextData = GameObject.Find("gameManager").GetComponent<Line>();
+        Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
+        
         // locks camera
         cam.GetComponent<Camera>().orthographicSize = 1.4f;
         //cam.GetComponent<Camera>().orthographicSize = 3f;
         cam.transform.position = new Vector3(-19.6f, 0.6f, -10.0f);
         cam.GetComponent<cameraMovement>().enabled = false;
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         if (!unlock)
         {
+            TextBox.PrintLine(TextData.getLine(7));
             // checks for key item in hand
             string nameCheck = GameObject.Find("Cursor").GetComponent<Hand>().GetName();
             if (nameCheck == "Green Square")
@@ -27,6 +31,7 @@ public class Monitor : MonoBehaviour, IClicked
 
             if(unlock)
             {
+                TextBox.PrintLine(TextData.getLine(8));
                 // disables lock screen
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 
