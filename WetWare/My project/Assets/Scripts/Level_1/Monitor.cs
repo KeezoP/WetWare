@@ -15,7 +15,7 @@ public class Monitor : MonoBehaviour, IClicked
         Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
         
         // locks camera
-        cam.GetComponent<Camera>().orthographicSize = 1.4f;
+        cam.GetComponent<Camera>().orthographicSize = 1.0f;
         //cam.GetComponent<Camera>().orthographicSize = 3f;
         cam.transform.position = new Vector3(-19.6f, 0.6f, -10.0f);
         cam.GetComponent<cameraMovement>().enabled = false;
@@ -26,20 +26,21 @@ public class Monitor : MonoBehaviour, IClicked
             TextBox.PrintLine(TextData.getLine(7));
             // checks for key item in hand
             string nameCheck = GameObject.Find("Cursor").GetComponent<Hand>().GetName();
-            if (nameCheck == "Green Square")
+            if (nameCheck == "Icebreaker_Hand")
                 unlock = true;
+        }
 
-            if(unlock)
-            {
-                TextBox.PrintLine(TextData.getLine(8));
-                // disables lock screen
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                
+        if (unlock)
+        {
+            TextBox.PrintLine(TextData.getLine(8));
+            // disables lock screen
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-                // begins download
-                GameObject.Find("Progress_Bar_Front").GetComponent<ProgressBar>().doBegin = true;
 
-            }
+            // begins download
+            GameObject.Find("Progress_Bar_Front").GetComponent<ProgressBar>().doBegin = true;
+
         }
 
     }

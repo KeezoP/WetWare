@@ -15,21 +15,24 @@ public class Poster : MonoBehaviour, IClicked
         Line TextData = GameObject.Find("gameManager").GetComponent<Line>();
         Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
 
-        GameObject poster1 = GameObject.Find("Poster_Clickable");
-        GameObject poster2 = GameObject.Find("Poster_Clickable_Dupe");
+        GameObject poster = GameObject.Find("Poster_Clickable");
 
-        poster1.GetComponent<BoxCollider2D>().enabled = false;
+        poster.GetComponent<BoxCollider2D>().enabled = false;
+        poster.GetComponent<SpriteRenderer>().enabled = false;
 
-        GameObject PosterKeyItem = GameObject.Find("Test Item (1)");
+        GameObject PosterKeyItem = GameObject.Find("Code_Field");
 
         if (PosterKeyItem != null)
+        {
             PosterKeyItem.GetComponent<SpriteRenderer>().enabled = true;
+            PosterKeyItem.GetComponent<BoxCollider2D>().enabled = true;
+        }
 
         // locks camera
-        cam.GetComponent<Camera>().orthographicSize = 3f;
-        cam.transform.position = new Vector3(-41f, 0.6f, -10.0f);
+        cam.GetComponent<Camera>().orthographicSize = 1.4f;
+        cam.transform.position = new Vector3(-16.5f, 2f, -10.0f);
         cam.GetComponent<cameraMovement>().enabled = false;
 
-        TextBox.PrintLine(TextData.getLine(1));
+        //TextBox.PrintLine(TextData.getLine(1));
     }
 }

@@ -23,7 +23,7 @@ public class Wall : MonoBehaviour, IClicked
         }
 
         GameObject BookCase = GameObject.Find("BookCase_Clickable");
-        GameObject BookCaseKeyItem = GameObject.Find("Test Item (2)");
+        GameObject BookCaseKeyItem = GameObject.Find("BusinessCard_Field");
 
         if (BookCase != null)
         {
@@ -38,27 +38,26 @@ public class Wall : MonoBehaviour, IClicked
             
         } 
 
-        GameObject poster = GameObject.Find("Poster_Clickable");
-        GameObject poster2 = GameObject.Find("Poster_Clickable_Dupe");
-        GameObject posterKeyItem = GameObject.Find("Test Item (1)");
+        GameObject painting = GameObject.Find("Painting_Clickable");
+        GameObject painting2 = GameObject.Find("Painting_Clickable_Dupe");
+        GameObject paintingKeyItem = GameObject.Find("Test Item (1)");
 
-        if (poster != null)
+        if (painting != null)
         {
-            poster.GetComponent<BoxCollider2D>().enabled = true;
-            if (posterKeyItem != null)
+            painting.GetComponent<BoxCollider2D>().enabled = true;
+            if (paintingKeyItem != null)
             {
 
-                posterKeyItem.GetComponent<SpriteRenderer>().enabled = false;
+                paintingKeyItem.GetComponent<SpriteRenderer>().enabled = false;
             } else
             {
-                poster.SetActive(false);
-                poster2.SetActive(false);
+                painting.SetActive(false);
+                painting2.SetActive(false);
             }
         }
 
         GameObject Pot = GameObject.Find("BookCase_Clickable");
-        //GameObject BookCaseKeyItem = GameObject.Find("Test Item (2)");
-
+        
         if (Pot != null)
         {
             Pot.GetComponent<BoxCollider2D>().enabled = true;
@@ -72,5 +71,51 @@ public class Wall : MonoBehaviour, IClicked
             }*/
 
         }
+
+        GameObject Poster = GameObject.Find("Poster_Clickable");
+        GameObject PosterKeyItem = GameObject.Find("Code_Field");
+
+        if (Poster != null)
+        {
+            Poster.GetComponent<BoxCollider2D>().enabled = true;
+            if (PosterKeyItem != null)
+            {
+                PosterKeyItem.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                Poster.SetActive(false);
+            }
+
+        }
+
+        GameObject PeepView = GameObject.Find("Peephole_View");
+        if(PeepView != null)
+        {
+            PeepView.GetComponent<SpriteRenderer>().enabled = false;
+            PeepView.GetComponent<BoxCollider2D>().enabled = false;
+
+            cam.GetComponent<cameraMovement>().enabled = true;
+        }
+
+        GameObject WindowView = GameObject.Find("Window_View");
+        if (WindowView != null)
+        {
+            WindowView.GetComponent<SpriteRenderer>().enabled = false;
+            WindowView.GetComponent<BoxCollider2D>().enabled = false;
+
+            cam.GetComponent<cameraMovement>().enabled = true;
+        }
+
+
+        GameObject DrawerView = GameObject.Find("Keypad_View");
+        if (DrawerView != null)
+        {
+            DrawerView.GetComponent<SpriteRenderer>().enabled = false;
+            DrawerView.GetComponent<BoxCollider2D>().enabled = false;
+
+            cam.GetComponent<cameraMovement>().enabled = true;
+        }
+
     }
 }

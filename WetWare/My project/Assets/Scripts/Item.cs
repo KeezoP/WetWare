@@ -12,13 +12,11 @@ public class Item : ScriptableObject
     public virtual void Use()
     {
 
-        Debug.Log("Inv item to hand: " + name);
-        //Debug.Log("Icon " + icon);
-        // close UI
-        /*GameObject.Find("Cursor").GetComponent<Hand>().setName(name);*/
-
+        //Debug.Log("Inv item to hand: " + name);
+        
         // empty hand
         string nameCheck = GameObject.Find("Cursor").GetComponent<Hand>().GetName();
+        //Debug.Log("Cursor Get Name: "+nameCheck);
         if (nameCheck != name && nameCheck != null)
             GameObject.Find(nameCheck).GetComponent<FollowMouse>().hideObject();
 

@@ -12,6 +12,11 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        Inventory.instance.Add(GameObject.Find("Icebreaker_Field").GetComponent<ItemPickup>().Item);
+    }
+
 
     public delegate void onItemChanged();
     public onItemChanged onItemChangedCallback;

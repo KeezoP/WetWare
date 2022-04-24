@@ -10,8 +10,9 @@ public class Dialogue : MonoBehaviour
     private int printCounter = 0;
     private float timePerChar = 0.05f;
     private float timer = 0;
-    private float fadeVal = 1.5f;
+    private float fadeVal = 1.0f;
     private bool finishedFading = true;
+    string Output = null;
     public void Awake()
     {
         GameObject.Find("DialogueParent").GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
@@ -30,14 +31,48 @@ public class Dialogue : MonoBehaviour
             if (timer >= timePerChar && finishedFading) {
 
                 fadeVal = 0.25f;
-                // prints
+
+                // prints 
                 if (printCounter <= lineToPrint.Length)
                 {
-                    string Output = lineToPrint.Substring(0, printCounter);
+                    //letter by letter
+                    /*string Output = lineToPrint.Substring(0, printCounter);
                     GameObject box = GameObject.Find("TextBox");
                     box.GetComponent<Text>().text = Output;
                     printCounter++;
+                    timer = 0.0f;*/
+
+                    // search for line breaker "|"
+                   /* int findNextLine = lineToPrint.IndexOf("|", printCounter);
+                    Debug.Log("Was a | found? : " + findNextLine);
+
+                    // if no line segments
+                    if (findNextLine == -1)
+                        Output = lineToPrint.Substring(0, lineToPrint.Length);
+                    else
+                        Output = lineToPrint.Substring(printCounter, findNextLine);
+*/
+                    //Debug.Log("Line to print: " + Output);
+
+                    Output = lineToPrint.Substring(0, lineToPrint.Length);
+
+                    //word by word
+                    int findNextWord = Output.IndexOf(" ", printCounter);
+                    if (findNextWord == -1)
+                        findNextWord = Output.Length;
+
+
+                    Output = Output.Substring(0, findNextWord);
+                    //Debug.Log("Word to print: " + Output);
+                    GameObject box = GameObject.Find("TextBox");
+                    box.GetComponent<Text>().text = Output;
+                    printCounter = findNextWord+1;
                     timer = 0.0f;
+
+                    // |
+
+
+
                 }
                 else 
                 {
@@ -47,7 +82,6 @@ public class Dialogue : MonoBehaviour
                     {
                         isPrinting = false;
                         fadeOut();
-                        
                     }
                 }
             } else if(timer >= fadeVal) {

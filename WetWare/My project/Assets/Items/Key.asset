@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46ca79cc80f0c7b4fa0d3313f4a042ee, type: 3}
-  m_Name: Red
+  m_Name: Key
   m_EditorClassIdentifier: 
-  name: Red Square
-  icon: {fileID: 21300000, guid: 7d1cce7213dd06a48b0da2edf8a52b52, type: 3}
-  inWorldImage: {fileID: 3244398624424260486, guid: a3b9663284982ce44bd6b0e376c4b612, type: 3}
+  name: Key_Hand
+  icon: {fileID: 21300000, guid: a9e3d6934100e0248975ffb3bef1ea58, type: 3}

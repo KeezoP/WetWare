@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46ca79cc80f0c7b4fa0d3313f4a042ee, type: 3}
-  m_Name: Yellow
+  m_Name: Icebreaker
   m_EditorClassIdentifier: 
-  name: Yellow Square
-  icon: {fileID: 21300000, guid: 049138a0e38744342992a1c946e6a424, type: 3}
-  inWorldImage: {fileID: 2134014261428041494, guid: 202692f224d305948a39988d441e781e, type: 3}
+  name: Icebreaker_Hand
+  icon: {fileID: 21300000, guid: c44be25fe8879004ab80629d6b0adcd5, type: 3}

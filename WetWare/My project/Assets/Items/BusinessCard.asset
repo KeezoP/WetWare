@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46ca79cc80f0c7b4fa0d3313f4a042ee, type: 3}
-  m_Name: Green
+  m_Name: BusinessCard
   m_EditorClassIdentifier: 
-  name: Green Square
-  icon: {fileID: 21300000, guid: 9c092dd450a9a5346a5fbd61aa98648a, type: 3}
-  inWorldImage: {fileID: 4357351146809707136, guid: 404df4b6a90f80846ba3974f4375d690, type: 3}
+  name: BusinessCard_Hand
+  icon: {fileID: 21300000, guid: ba30e0d8a3285b945bb71e5a5a2d493f, type: 3}

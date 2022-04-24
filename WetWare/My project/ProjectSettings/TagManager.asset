@@ -11,6 +11,12 @@ TagManager:
   - BookCase
   - Poster
   - Pot
+  - Painting
+  - Peephole
+  - Door
+  - window
+  - blinds
+  - Keypad
   layers:
   - Default
   - TransparentFX

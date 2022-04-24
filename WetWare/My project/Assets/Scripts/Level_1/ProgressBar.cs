@@ -30,8 +30,8 @@ public class ProgressBar : MonoBehaviour
             if (progTimer > 10.0f && progScriptCounter == 0)
             {
                 doPause = true;
-                GameObject.Find("Puzzle_1_Hider").GetComponent<SpriteRenderer>().enabled = false;
-                GameObject.Find("Puzzle_1_Hider").GetComponent<BoxCollider2D>().enabled = false;
+                GameObject.Find("Monitor_Backdrop").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Monitor_Backdrop").GetComponent<BoxCollider2D>().enabled = false;
             }
                 
             // increase bar progression

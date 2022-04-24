@@ -19,28 +19,32 @@ public class ItemPickup : MonoBehaviour, IClicked
         
         switch (Item.name)
         {
-            case "Green Square":
-                //TextBox.fadeIn();
+            case "StickyNote_Hand":
                 TextBox.PrintLine(TextData.getLine(4));
                 break;
 
-            case "Yellow Square":
-                //TextBox.fadeIn();
-                TextBox.PrintLine(TextData.getLine(5));
+            case "BusinessCard_Hand":
+                TextBox.PrintLine(TextData.getLine(15));
                 break;
 
-            case "Red Square":
-                //TextBox.fadeIn();
+            case "Key_Hand":
+                TextBox.PrintLine(TextData.getLine(3));
+                break;
+
+            case "Code_Hand":
                 TextBox.PrintLine(TextData.getLine(0));
                 break;
 
         }
-
-
-
-        //Debug.Log("I picked up :" + Item.name);
+        Debug.Log("Item " + Item + " | name: "+Item.name);
         Inventory.instance.Add(Item);
-        Destroy(gameObject);
-    
+        if(Item.name != "Icebreaker_Hand")
+            Destroy(gameObject);
+        else
+        {
+            GameObject door = GameObject.Find("door blue");
+            door.GetComponent<BoxCollider2D>().enabled = true;
+            door.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 }

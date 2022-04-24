@@ -66,7 +66,10 @@ public class CursorController : MonoBehaviour
     private void endedClick()
     {
         changeCursor(cursor);
-        
+        string nameCheck = GameObject.Find("Cursor").GetComponent<Hand>().GetName();
+        if (nameCheck != null)
+
+            GameObject.Find("Cursor").GetComponent<Hand>().SetName(null);
     }
 
     private void DetectObject()
