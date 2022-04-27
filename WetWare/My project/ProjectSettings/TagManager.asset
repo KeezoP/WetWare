@@ -17,6 +17,7 @@ TagManager:
   - window
   - blinds
   - Keypad
+  - Drawer
   layers:
   - Default
   - TransparentFX

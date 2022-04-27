@@ -19,6 +19,7 @@ public class Poster : MonoBehaviour, IClicked
 
         poster.GetComponent<BoxCollider2D>().enabled = false;
         poster.GetComponent<SpriteRenderer>().enabled = false;
+        TextBox.PrintLine(TextData.getLine(35));
 
         GameObject PosterKeyItem = GameObject.Find("Code_Field");
 
@@ -33,6 +34,6 @@ public class Poster : MonoBehaviour, IClicked
         cam.transform.position = new Vector3(-16.5f, 2f, -10.0f);
         cam.GetComponent<cameraMovement>().enabled = false;
 
-        //TextBox.PrintLine(TextData.getLine(1));
+        
     }
 }

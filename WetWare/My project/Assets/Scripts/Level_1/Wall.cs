@@ -8,8 +8,8 @@ public class Wall : MonoBehaviour, IClicked
     public void onClickAction()
     {
         // if zoomed in, zoom out
-        if (cam.GetComponent<Camera>().orthographicSize != 5.3f) {
-            cam.GetComponent<Camera>().orthographicSize = 5.3f;
+        if (cam.orthographicSize != 5.3f) {
+            cam.orthographicSize = 5.3f;
             cam.GetComponent<cameraMovement>().enabled = true;
             cam.transform.position = new Vector3(cam.transform.position.x, 0.0f, -10.0f);
 
@@ -19,7 +19,8 @@ public class Wall : MonoBehaviour, IClicked
 
         if (monitor != null || monitor.GetComponent<Monitor>().isUnlocked() )
         {
-            monitor.GetComponent<BoxCollider2D>().enabled = true; 
+            monitor.GetComponent<BoxCollider2D>().enabled = true;
+            monitor.GetComponent<Monitor>().setAtPC(false);
         }
 
         GameObject BookCase = GameObject.Find("BookCase_Clickable");
@@ -56,19 +57,12 @@ public class Wall : MonoBehaviour, IClicked
             }
         }
 
-        GameObject Pot = GameObject.Find("BookCase_Clickable");
+        GameObject Pot = GameObject.Find("Pot_Clickable");
         
         if (Pot != null)
         {
             Pot.GetComponent<BoxCollider2D>().enabled = true;
-            /*if (BookCaseKeyItem != null)
-            {
-                BookCaseKeyItem.GetComponent<SpriteRenderer>().enabled = false;
-            }*/
-            /*else
-            {
-                Pot.SetActive(false);
-            }*/
+            
 
         }
 
@@ -90,31 +84,67 @@ public class Wall : MonoBehaviour, IClicked
         }
 
         GameObject PeepView = GameObject.Find("Peephole_View");
+        GameObject PeepView2 = GameObject.Find("Peephole_View_Background");
+        GameObject PeepView3 = GameObject.Find("Peephole_Enemy");
+
         if(PeepView != null)
         {
             PeepView.GetComponent<SpriteRenderer>().enabled = false;
             PeepView.GetComponent<BoxCollider2D>().enabled = false;
 
+            PeepView2.GetComponent<SpriteRenderer>().enabled = false;
+            PeepView2.GetComponent<BoxCollider2D>().enabled = false;
+
+            PeepView3.GetComponent<SpriteRenderer>().enabled = false;
+
             cam.GetComponent<cameraMovement>().enabled = true;
         }
 
         GameObject WindowView = GameObject.Find("Window_View");
+        GameObject WindowView2 = GameObject.Find("Window_View_Background");
+
+        GameObject EnemyPos1 = GameObject.Find("Enemy_Pos_1");
+        GameObject EnemyPos2 = GameObject.Find("Enemy_Pos_2");
+        GameObject EnemyPos3 = GameObject.Find("Enemy_Pos_3");
+        GameObject EnemyClose = GameObject.Find("Enemy_Close");
+
         if (WindowView != null)
         {
             WindowView.GetComponent<SpriteRenderer>().enabled = false;
             WindowView.GetComponent<BoxCollider2D>().enabled = false;
+            WindowView2.GetComponent<SpriteRenderer>().enabled = false;
+            WindowView2.GetComponent<BoxCollider2D>().enabled = false;
+
+            EnemyClose.GetComponent<SpriteRenderer>().enabled = false;
+
 
             cam.GetComponent<cameraMovement>().enabled = true;
         }
 
 
-        GameObject DrawerView = GameObject.Find("Keypad_View");
-        if (DrawerView != null)
+        GameObject KeypadView = GameObject.Find("Keypad_View");
+        if (KeypadView != null)
         {
-            DrawerView.GetComponent<SpriteRenderer>().enabled = false;
-            DrawerView.GetComponent<BoxCollider2D>().enabled = false;
+            KeypadView.GetComponent<SpriteRenderer>().enabled = false;
+            KeypadView.GetComponent<BoxCollider2D>().enabled = false;
 
             cam.GetComponent<cameraMovement>().enabled = true;
+
+            GameObject.Find("KeyPad_Back").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_1").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_2").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_3").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_4").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_5").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_6").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_7").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_8").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("keypad_9").GetComponent<BoxCollider2D>().enabled = false;
+
+            GameObject.Find("pin_1").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("pin_2").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("pin_3").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("pin_4").GetComponent<SpriteRenderer>().enabled = false;
         }
 
     }

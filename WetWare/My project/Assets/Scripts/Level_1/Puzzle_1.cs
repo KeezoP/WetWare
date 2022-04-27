@@ -106,15 +106,9 @@ public class Puzzle_1 : MonoBehaviour, IClicked
                 {
                     GameObject.Find(i.ToString()).GetComponent<CircleCollider2D>().enabled = false;
                 }
-                GameObject.Find("Progress_Bar_Front").GetComponent<ProgressBar>().doPause = false;
-                GameObject.Find("Progress_Bar_Front").GetComponent<ProgressBar>().progScriptCounter = 1;
+                GameObject.Find("Progress_Bar_Front").GetComponent<ProgressBar>().puzzleComplete();
                 GameObject.Find("Monitor_Backdrop").GetComponent<SpriteRenderer>().enabled = true;
                 GameObject.Find("Monitor_Backdrop").GetComponent<BoxCollider2D>().enabled = true;
-                /*cam.GetComponent<Camera>().orthographicSize = 8.2f;
-                Vector3 camPos = cam.transform.position;
-                camPos.y = -0.8f;
-                cam.transform.position = camPos;
-                cam.GetComponent<cameraMovement>().enabled = true;*/
             }
 
         }

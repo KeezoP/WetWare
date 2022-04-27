@@ -8,6 +8,7 @@ public class BookCase : MonoBehaviour, IClicked
     public Camera cam;
     public int zoomIn;
     private bool unlock = false;
+    private bool firstZoom = true;
 
     public void onClickAction()
     {
@@ -25,8 +26,13 @@ public class BookCase : MonoBehaviour, IClicked
             cam.transform.position = new Vector3(-13f, 0.6f, -10.0f);
             cam.GetComponent<cameraMovement>().enabled = false;
 
-
-            //TextBox.PrintLine(TextData.getLine(13));
+            if (firstZoom)
+            {
+                firstZoom = false;
+                TextBox.PrintLine(TextData.getLine(37));
+            }
+            else
+                TextBox.PrintLine(TextData.getLine(38));
         }
 
         if (name == "Box")
@@ -52,10 +58,13 @@ public class BookCase : MonoBehaviour, IClicked
                     GameObject BookCaseKeyItem = GameObject.Find("BusinessCard_Field");
                     BookCaseKeyItem.GetComponent<SpriteRenderer>().enabled = true;
                     TextBox.PrintLine(TextData.getLine(14));
-                    //Debug.Log("All of inv: " + Inventory.instance);
+
                     Inventory.instance.Remove(Inventory.instance.items.Find(i => i.name == "Key_Hand"));
 
+                    TextBox.PrintLine(TextData.getLine(40));
                 }
+                else
+                    TextBox.PrintLine(TextData.getLine(39));
             }
         }
     }

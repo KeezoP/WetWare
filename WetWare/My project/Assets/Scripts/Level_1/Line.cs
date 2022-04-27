@@ -7,7 +7,7 @@ public class Line : MonoBehaviour
     string[] Dialogue;
     private void Awake()
     {
-        Dialogue = System.IO.File.ReadAllLines("Assets/Scripts/Level_1/Level_1_Text.txt");
+        Dialogue = System.IO.File.ReadAllLines("Assets/Scripts/Level_1/Level_1_Textv2.txt");
     }
 
     public string getLine(int lineNum)

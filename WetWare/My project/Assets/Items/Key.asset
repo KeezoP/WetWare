@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   name: Key_Hand
-  icon: {fileID: 21300000, guid: a9e3d6934100e0248975ffb3bef1ea58, type: 3}
+  icon: {fileID: 21300000, guid: df94e16b5cc2d3b41acec32f27b17407, type: 3}

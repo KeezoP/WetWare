@@ -10,7 +10,7 @@ public class Dialogue : MonoBehaviour
     private int printCounter = 0;
     private float timePerChar = 0.05f;
     private float timer = 0;
-    private float fadeVal = 1.0f;
+    public float fadeVal = 0.1f;
     private bool finishedFading = true;
     string Output = null;
     public void Awake()
@@ -76,13 +76,14 @@ public class Dialogue : MonoBehaviour
                 }
                 else 
                 {
-                    fadeVal = 1.5f;
+                    fadeVal = 3f;
                     // wait x seconds then fade
                     if (timer >= fadeVal)
                     {
                         isPrinting = false;
                         fadeOut();
                     }
+                    fadeVal = 0.1f;
                 }
             } else if(timer >= fadeVal) {
                 timer = 0.0f;
@@ -106,9 +107,12 @@ public class Dialogue : MonoBehaviour
 
     public void fadeIn()
     {
-        finishedFading = false;
+        /*finishedFading = false;
         gameObject.GetComponent<Image>().CrossFadeAlpha(1.0f, fadeVal, false);
-        GameObject.Find("TextBox").GetComponent<Text>().CrossFadeAlpha(1.0f, fadeVal, false);
+        GameObject.Find("TextBox").GetComponent<Text>().CrossFadeAlpha(1.0f, fadeVal, false);*/
+        gameObject.GetComponent<Image>().canvasRenderer.SetAlpha(1.0f);
+        GameObject.Find("TextBox").GetComponent<Text>().canvasRenderer.SetAlpha(1.0f);
+        finishedFading = false;
     }
 
     public void fadeOut()
