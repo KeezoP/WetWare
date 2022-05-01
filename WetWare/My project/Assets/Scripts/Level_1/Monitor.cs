@@ -20,7 +20,7 @@ public class Monitor : MonoBehaviour, IClicked
         Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
         atPC = true;
 
-        if (gameObject.name != "file")
+        if (gameObject.name != "File")
         {
             // if not already zoomed in, run this dialogue
             if (cam.GetComponent<Camera>().orthographicSize != 1.0f)

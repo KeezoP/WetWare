@@ -56,6 +56,12 @@ public class BookCase : MonoBehaviour, IClicked
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
                     GameObject BookCaseKeyItem = GameObject.Find("BusinessCard_Field");
+                    GameObject openBox = GameObject.Find("Open");
+                    GameObject closedBox = GameObject.Find("Closed");
+
+                    openBox.GetComponent<SpriteRenderer>().enabled = true;
+                    closedBox.GetComponent<SpriteRenderer>().enabled = false;
+
                     BookCaseKeyItem.GetComponent<SpriteRenderer>().enabled = true;
                     TextBox.PrintLine(TextData.getLine(14));
 

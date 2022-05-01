@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
     public bool doPause;
     public bool doBegin;
     private float percentageTimer;
-    private int percentage;
+    public int percentage;
     private int progScriptCounter;
     private Line TextData;
     private Dialogue TextBox;
-    private bool atPC = false;
     private void Start()
     {
         TextData = GameObject.Find("gameManager").GetComponent<Line>();
@@ -53,7 +53,7 @@ public class ProgressBar : MonoBehaviour
 
 
             // trigger puzzle 1
-            if (percentage == 10 && progScriptCounter == 0)
+            if (percentage == 33 && progScriptCounter == 0)
             {
                 doPause = true;
                 GameObject.Find("Monitor_Backdrop").GetComponent<SpriteRenderer>().enabled = false;
@@ -83,6 +83,8 @@ public class ProgressBar : MonoBehaviour
             if (percentage > 99)
             {
                 doBegin = false;
+                percentageTimer = 0.0f;
+                winCon();
             }
 
 
@@ -91,6 +93,13 @@ public class ProgressBar : MonoBehaviour
         else if (doPause)
         {
             GameObject.Find("Progress_Bar_Front").GetComponent<SpriteRenderer>().color = new Vector4(0.84f, 0.404f, 0.407f, 1.0f);
+        }
+
+        if (percentage == 100)
+        {
+            percentageTimer += Time.deltaTime;
+            if (percentageTimer >= 4.0f)
+                Application.Quit();
         }
     }
 
@@ -108,5 +117,20 @@ public class ProgressBar : MonoBehaviour
         doPause = false;
     }
 
+    private void winCon()
+    {
+        // lead to next scene, doesn't exist
+
+        // stop big enemy progression, camera movement etc
+        GameObject enemy = GameObject.Find("Peephole_Enemy");
+        enemy.GetComponent<BigEnemy>().pause();
+
+        // fade to white
+        GameObject bs = GameObject.Find("Black_Screen");
+        Color newColor = Color.white;
+        bs.GetComponent<Image>().color = newColor;
+        bs.GetComponent<Image>().CrossFadeAlpha(1.0f, 2.0f, false);
+
+    }
 
 }

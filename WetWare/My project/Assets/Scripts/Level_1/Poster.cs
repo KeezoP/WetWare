@@ -8,7 +8,6 @@ public class Poster : MonoBehaviour, IClicked
     [SerializeField]
     public Camera cam;
     public int zoomIn;
-    private bool unlock = false;
 
     public void onClickAction()
     {

@@ -32,9 +32,11 @@ public class Door : MonoBehaviour, IClicked
                 Inventory.instance.Remove(Inventory.instance.items.Find(i => i.name == "Icebreaker_Hand"));
                 isAttached = true;
             }
-                
+            else if (battery == 0)
+                TextBox.PrintLine(TextData.getLine(60));
+
             // dialogue
-            if(nameCheck == "Icebreaker_Hand")
+            if (nameCheck == "Icebreaker_Hand")
             {
                 TextBox.PrintLine(TextData.getLine(23));
             }
@@ -60,7 +62,13 @@ public class Door : MonoBehaviour, IClicked
                 battery -= 1;
                 timer = 0.0f;
             }
+        } else if(isAttached && battery == 0)
+        {
+            Line TextData = GameObject.Find("gameManager").GetComponent<Line>();
+            Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
+            TextBox.PrintLine(TextData.getLine(59));
         }
+            
     }
 
     public void detach()

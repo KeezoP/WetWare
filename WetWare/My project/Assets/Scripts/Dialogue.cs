@@ -12,16 +12,31 @@ public class Dialogue : MonoBehaviour
     private float timer = 0;
     public float fadeVal = 0.1f;
     private bool finishedFading = true;
+    private bool first = true;
+    private float firstTimer = 0.0f;
     string Output = null;
+
     public void Awake()
     {
         GameObject.Find("DialogueParent").GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
-        
-
     }
 
     private void Update()
     {
+        if (first)
+        {
+            if (firstTimer < 2.5f)
+            {
+                firstTimer += Time.deltaTime;
+            }
+            else
+            {
+                first = false;
+                Line TextData = GameObject.Find("gameManager").GetComponent<Line>();
+                Dialogue TextBox = GameObject.Find("DialogueParent").GetComponent<Dialogue>();
+                TextBox.PrintLine(TextData.getLine(58));
+            }
+        }
         // if printing begins
         if(isPrinting)
         {

@@ -9,27 +9,33 @@ public class BigEnemy : MonoBehaviour
     public bool atPeephole = false;
     private float scaleMod = 0.002f;
     private float timer = 0.0f;
-    private bool begin = false;
+    public bool begin = false;
     private float timerTarget;
     private int endScript = 0;
     GameObject PeepView;
     GameObject bs;
 
-    // Start is called before the first frame update
+    
     private void Awake()
     {
-        //timerTarget = calcScriptTimeTarget();
-        timerTarget = 2;
+        // calculate the target time to move position
+        timerTarget = calcScriptTimeTarget();
+
+        // set Game Objects
         PeepView = GameObject.Find("Peephole_View");
         bs = GameObject.Find("Black_Screen");
-        bs.GetComponent<Image>().CrossFadeAlpha(0.0f, 1.0f, false);
 
+        // black screen fades out to reveal level
+        bs.GetComponent<Image>().CrossFadeAlpha(0.0f, 2.0f, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if enemy movement scripts 'begin' and isn't at final stage ( 5 )
+        // stops additional update
+        if(gameObject.name != "Enemy_Position_5")
+        {
+            // if enemy movement scripts 'begin' and isn't at final stage ( 5 )
         if (begin && screenPos < 5)
         {
             timer += Time.deltaTime;
@@ -41,6 +47,7 @@ public class BigEnemy : MonoBehaviour
                 timer = 0.0f;
                 timerTarget = calcScriptTimeTarget();
 
+                // if at peephole
                 if (screenPos == 4)
                     atPeephole = true;
                 else
@@ -48,9 +55,7 @@ public class BigEnemy : MonoBehaviour
             }
         }
 
-        
-
-        // makes the big enemy faintly scale in/out while at peephole
+        // if enemy AND player is at peephole, apply scaling effect
         if (atPeephole && PeepView.GetComponent<SpriteRenderer>().isVisible)
         {
             Vector3 scale = gameObject.transform.localScale;
@@ -66,15 +71,14 @@ public class BigEnemy : MonoBehaviour
             gameObject.transform.localScale = scale;
         }
 
-        
-
-        // player lose attempt
+        // enemy attempting to enter room
         if (screenPos == 5)
         {
-            // if player safe
+            // if the door is locked
             if (GameObject.Find("door blue").GetComponent<Door>().locked()) {
                 ResetPosition();
 
+                // if first failed attempt to enter, trigger window enemy
                 GameObject windowEnemy = GameObject.Find("Enemy_Close");
                 if (!windowEnemy.GetComponent<SmallEnemy>().begin)
                     windowEnemy.GetComponent<SmallEnemy>().begin = true;
@@ -83,14 +87,12 @@ public class BigEnemy : MonoBehaviour
             // player death script
             else
             {
-             
-
                 Camera cam = Camera.main;
 
                 // lock camera
                 cam.GetComponent<cameraMovement>().enabled = false;
-                GameObject pos4 = GameObject.Find("Peephole_Enemy");
-                Vector3 scale = pos4.transform.localScale;
+                GameObject pos5 = GameObject.Find("Enemy_Position_5");
+                Vector3 scale = pos5.transform.localScale;
 
 
                 timer += Time.deltaTime;
@@ -122,12 +124,12 @@ public class BigEnemy : MonoBehaviour
                     // lights fade back in
                     bs.GetComponent<Image>().CrossFadeAlpha(0.8f, 0.5f, false);
                     timer = 0.0f;
-                    scale.x = 0.5f;
-                    scale.y = 0.5f;
-                    pos4.transform.localScale = scale;
+                    scale.x = 1.0f;
+                    scale.y = 1.0f;
+                    pos5.transform.localScale = scale;
                     
                     
-                    pos4.GetComponent<SpriteRenderer>().enabled = true;
+                    pos5.GetComponent<SpriteRenderer>().enabled = true;
                 }
 
                 else if (timer >= 1.5f && endScript == 2)
@@ -138,21 +140,27 @@ public class BigEnemy : MonoBehaviour
 
                 else if (endScript == 3)
                 {
-                    scale.x += 0.02f;
-                    scale.y += 0.02f;
-                    Vector3 enemyPos = pos4.transform.position;
-                    enemyPos.y -= 0.02f;
-                    pos4.transform.position = enemyPos;
+                    scale.x += 0.016f;
+                    scale.y += 0.016f;
+                    Vector3 enemyPos = pos5.transform.position;
+                        enemyPos.y -= 0.062f;
+                    
+                    pos5.transform.position = enemyPos;
 
-                    if (scale.x >= 2.4)
+                    if (scale.x >= 4)
                     {
-                        scale.x = 2.4f;
+                        scale.x = 4.0f;
                         scale.y = scale.x;
                         endScript = 4;
 
                         bs.GetComponent<Image>().CrossFadeAlpha(1.0f, 2.0f, false);
+                            timer = 0.0f;
                     }
-                    pos4.transform.localScale = scale;
+                    pos5.transform.localScale = scale;
+                }
+                else if (timer >= 2.0f) 
+                {
+                        displayDeathOptions();        
                 }
 
             }
@@ -160,6 +168,9 @@ public class BigEnemy : MonoBehaviour
         {
             renderEnemy();
         }
+        }
+
+        
 
 
         
@@ -184,17 +195,25 @@ public class BigEnemy : MonoBehaviour
 
     }
 
+    public void pause()
+    {
+        screenPos = 0;
+        begin = false;
+    }
+
     private void renderEnemy()
     {
       GameObject pos1 = GameObject.Find("Enemy_Pos_1");    
       GameObject pos2 = GameObject.Find("Enemy_Pos_2");    
       GameObject pos3 = GameObject.Find("Enemy_Pos_3");    
       GameObject pos4 = GameObject.Find("Peephole_Enemy");
+      GameObject pos5 = GameObject.Find("Enemy_Position_5");
 
         pos1.GetComponent<SpriteRenderer>().enabled = false;
         pos2.GetComponent<SpriteRenderer>().enabled = false;
         pos3.GetComponent<SpriteRenderer>().enabled = false;
         pos4.GetComponent<SpriteRenderer>().enabled = false;
+        pos5.GetComponent<SpriteRenderer>().enabled = false;
         
         switch(screenPos)
         {
@@ -221,7 +240,27 @@ public class BigEnemy : MonoBehaviour
                     pos4.GetComponent<SpriteRenderer>().enabled = true;
                 }
                 break;
+            case 5:
+                if (PeepView.GetComponent<SpriteRenderer>().isVisible)
+                {
+                    pos5.GetComponent<SpriteRenderer>().enabled = true;
+                }
+                break;
         }
         
     }
+
+    private void displayDeathOptions()
+    {
+        GameObject rl = GameObject.Find("RestartLevel");
+        GameObject el = GameObject.Find("ExitLevel");
+
+        rl.GetComponent<Button>().enabled = true;
+        rl.GetComponent<Image>().enabled = true;
+        
+        el.GetComponent<Button>().enabled = true;
+        el.GetComponent<Image>().enabled = true;
+    }
+
+
 }

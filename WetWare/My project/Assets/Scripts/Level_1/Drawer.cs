@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Drawer : MonoBehaviour, IClicked
 {
-    private string correctPin = "1234";
+    private string correctPin = "5217";
     public string[] userInput = new string[4];
     private float[] buttonTime = new float[9];
     private int counter = 0;
